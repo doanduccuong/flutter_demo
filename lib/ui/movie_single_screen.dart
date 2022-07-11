@@ -39,35 +39,36 @@ class _MovieSingleScreenState extends State<MovieSingleScreen> {
     return ChangeNotifierProvider(
       create: (_) => AppProvider(appRepository: context.read<AppRepository>()),
       builder: (context, child) {
-        final a = context.watch<AppProvider>().response;
         return Scaffold(
           body: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      const Icon(Icons.arrow_back_ios),
-                      Text(
-                        "Back",
-                        style:
-                            AppTextStyle.commonTextStyle.copyWith(fontSize: 32),
-                      )
-                    ],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    const Icon(Icons.arrow_back_ios),
+                    Text(
+                      "Back",
+                      style:
+                          AppTextStyle.commonTextStyle.copyWith(fontSize: 32),
+                    )
+                  ],
+                ),
+                SIZED_BOX_H14,
+                Text(
+                  "Popular list",
+                  style: AppTextStyle.commonTextStyle.copyWith(
+                    color: AppColors.aPrimaryColor,
+                    fontSize: 27,
                   ),
-                  SIZED_BOX_H14,
-                  Text(
-                    "Popular list",
-                    style: AppTextStyle.commonTextStyle.copyWith(
-                      color: AppColors.aPrimaryColor,
-                      fontSize: 27,
-                    ),
-                  ),
-                  const ListMovie()
-                ],
-              ),
+                ),
+                Flexible(
+                  child: SmartRefresher(
+                      onRefresh: () => _onRefresh(context),
+                      controller: _refreshController,
+                      child: const ListMovie()),
+                )
+              ],
             ),
           ),
         );

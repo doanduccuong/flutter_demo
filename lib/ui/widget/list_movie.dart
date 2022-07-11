@@ -7,29 +7,29 @@ class ListMovie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: GridView.count(
-        mainAxisSpacing: 20.h,
-        crossAxisSpacing: 20.h,
-        crossAxisCount: 2,
-        children: List.generate(
-          100,
-          (index) => Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                CircleAvatar(
-                  radius: 20,
-                )
-              ],
-            ),
-            width: 166.w,
-            height: 252.h,
-            decoration: BoxDecoration(
-
-                color: AppColors.black,
-                borderRadius: BorderRadius.circular(10)),
+    return GridView.count(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      scrollDirection: Axis.vertical,
+      mainAxisSpacing: 20.h,
+      crossAxisSpacing: 20.h,
+      crossAxisCount: 2,
+      children: List.generate(
+        100,
+        (index) => Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              CircleAvatar(
+                radius: 20,
+              )
+            ],
           ),
+          width: 166.w,
+          height: 252.h,
+          decoration: BoxDecoration(
+              color: AppColors.black,
+              borderRadius: BorderRadius.circular(10)),
         ),
       ),
     );
