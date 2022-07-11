@@ -66,6 +66,8 @@ class _MovieSingleScreenState extends State<MovieSingleScreen> {
                 ),
                 Flexible(
                   child: SmartRefresher(
+                    enablePullDown: true,
+                      onLoading: () => _onLoading(context),
                       onRefresh: () => _onRefresh(context),
                       controller: _refreshController,
                       child: const ListMovie()),

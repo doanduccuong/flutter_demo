@@ -9,7 +9,9 @@ part of 'rest_client.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps
 
 class _AppRestClient implements AppRestClient {
-  _AppRestClient(this._dio, {this.baseUrl});
+  _AppRestClient(this._dio, {this.baseUrl}) {
+    baseUrl ??= 'https://api.themoviedb.org/3/discover/';
+  }
 
   final Dio _dio;
 
