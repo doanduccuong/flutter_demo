@@ -21,8 +21,11 @@ class AppProvider extends ChangeNotifier {
     log(movieItemResponse.toString());
     LoadingUtil.showLoading();
     try {
-      movieItemResponse = await appRepository.getMovieData(2);
+      movieItemResponse = await appRepository.getMovieData(1);
+      movieList = List.from(movieList)
+        ..addAll(movieItemResponse?.results ?? []);
       log(movieItemResponse.toString());
+      notifyListeners();
     } catch (e) {
       LoadingUtil.hideLoading();
       print(e);
@@ -62,6 +65,7 @@ class AppProvider extends ChangeNotifier {
           isFull = true;
         }
       }
+      notifyListeners();
     } finally {
       LoadingUtil.hideLoading();
     }

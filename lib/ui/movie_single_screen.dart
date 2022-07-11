@@ -17,14 +17,16 @@ class MovieSingleScreen extends StatefulWidget {
 }
 
 class _MovieSingleScreenState extends State<MovieSingleScreen> {
+  int page = 1;
   final _refreshController = RefreshController();
   Future<void> _onRefresh(BuildContext context) async {
-    Future.delayed(Duration(seconds: 2));
+    context.read<AppProvider>().initData();
     _refreshController.refreshCompleted();
   }
 
   Future<void> _onLoading(BuildContext context) async {
-    Future.delayed(Duration(seconds: 2));
+    page++;
+    context.read<AppProvider>().getMovieLoadMore(page);
     _refreshController.loadComplete();
   }
 
