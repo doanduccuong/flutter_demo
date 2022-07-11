@@ -4,7 +4,7 @@ import 'package:flutter_doan_duc_cuong/common/constant.dart';
 import 'package:flutter_doan_duc_cuong/common/text_styles.dart';
 import 'package:flutter_doan_duc_cuong/provider/app_provider.dart';
 import 'package:flutter_doan_duc_cuong/rest_api/repository.dart';
-import 'package:flutter_doan_duc_cuong/ui/widget/list_movie.dart';
+import 'package:flutter_doan_duc_cuong/ui/widget/movie_item.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -43,36 +43,70 @@ class _MovieSingleScreenState extends State<MovieSingleScreen> {
       builder: (context, child) {
         return Scaffold(
           body: SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    const Icon(Icons.arrow_back_ios),
-                    Text(
-                      "Back",
-                      style:
-                          AppTextStyle.commonTextStyle.copyWith(fontSize: 32),
-                    )
-                  ],
-                ),
-                SIZED_BOX_H14,
-                Text(
-                  "Popular list",
-                  style: AppTextStyle.commonTextStyle.copyWith(
-                    color: AppColors.aPrimaryColor,
-                    fontSize: 27,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(Icons.arrow_back_ios),
+                      Text(
+                        "Back",
+                        style:
+                            AppTextStyle.commonTextStyle.copyWith(fontSize: 32),
+                      )
+                    ],
                   ),
-                ),
-                Flexible(
-                  child: SmartRefresher(
-                    enablePullDown: true,
-                      onLoading: () => _onLoading(context),
-                      onRefresh: () => _onRefresh(context),
-                      controller: _refreshController,
-                      child: const ListMovie()),
-                )
-              ],
+                  SIZED_BOX_H14,
+                  Text(
+                    "Popular list",
+                    style: AppTextStyle.commonTextStyle.copyWith(
+                      color: AppColors.aPrimaryColor,
+                      fontSize: 27,
+                    ),
+                  ),
+                  Consumer<AppProvider>(
+                    builder: (BuildContext context, provider, Widget? child) {
+                      final data = provider.movieItemResponse;
+                      final length = provider.movieList.length;
+                      return data == null
+                          ? const SizedBox()
+                          : Flexible(
+                              child: SmartRefresher(
+                              footer: const ClassicFooter(
+                                loadStyle: LoadStyle.ShowWhenLoading,
+                              ),
+                              enablePullDown: true,
+                              enablePullUp: true,
+                              onLoading: () => _onLoading(context),
+                              onRefresh: () => _onRefresh(context),
+                              controller: _refreshController,
+                              child: GridView.count(
+                                shrinkWrap: true,
+                                mainAxisSpacing: 20.h,
+                                crossAxisSpacing: 20.h,
+                                crossAxisCount: 2,
+                                children: List.generate(
+                                  length,
+                                  (index) {
+                                    final image = provider
+                                            .movieList[index]?.backDropPath ??
+                                        "";
+                                    final score =
+                                        provider.movieList[index]?.voteAverage;
+                                    return ListItem(
+                                      image: image,
+                                      score: score,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ));
+                    },
+                  )
+                ],
+              ),
             ),
           ),
         );

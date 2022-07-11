@@ -9,9 +9,9 @@ part 'movie_content.g.dart';
 @freezed
 abstract class MovieContent with _$MovieContent {
   const factory MovieContent({
-    @JsonKey(name: "backdrop_path") String? a,
+    @JsonKey(name: "backdrop_path") String? backDropPath,
     // ignore: invalid_annotation_target
-    @JsonKey(name: "vote_average") String? voteAverage,
+    @JsonKey(name: "vote_average") double? voteAverage,
   }) = _MovieContent;
 
   factory MovieContent.fromJson(Map<String, dynamic> json) =>

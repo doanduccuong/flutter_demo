@@ -9,8 +9,11 @@ class AppService{
   Future<MovieItemResponse?> getData()async{
     try{
       restClient=AppRestClient(_dio);
+      final a=restClient.getMovieData("26763d7bf2e94098192e629eb975dab0", 1);
+      print(a);
       return restClient.getMovieData("26763d7bf2e94098192e629eb975dab0", 1);
     }catch(e){
+      print(e);
       return null;
     }
 

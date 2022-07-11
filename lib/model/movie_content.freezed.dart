@@ -21,10 +21,10 @@ MovieContent _$MovieContentFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MovieContent {
   @JsonKey(name: "backdrop_path")
-  String? get a =>
+  String? get backDropPath =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "vote_average")
-  String? get voteAverage => throw _privateConstructorUsedError;
+  double? get voteAverage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,8 +38,8 @@ abstract class $MovieContentCopyWith<$Res> {
           MovieContent value, $Res Function(MovieContent) then) =
       _$MovieContentCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: "backdrop_path") String? a,
-      @JsonKey(name: "vote_average") String? voteAverage});
+      {@JsonKey(name: "backdrop_path") String? backDropPath,
+      @JsonKey(name: "vote_average") double? voteAverage});
 }
 
 /// @nodoc
@@ -52,18 +52,18 @@ class _$MovieContentCopyWithImpl<$Res> implements $MovieContentCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? a = freezed,
+    Object? backDropPath = freezed,
     Object? voteAverage = freezed,
   }) {
     return _then(_value.copyWith(
-      a: a == freezed
-          ? _value.a
-          : a // ignore: cast_nullable_to_non_nullable
+      backDropPath: backDropPath == freezed
+          ? _value.backDropPath
+          : backDropPath // ignore: cast_nullable_to_non_nullable
               as String?,
       voteAverage: voteAverage == freezed
           ? _value.voteAverage
           : voteAverage // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
     ));
   }
 }
@@ -76,8 +76,8 @@ abstract class _$$_MovieContentCopyWith<$Res>
       __$$_MovieContentCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: "backdrop_path") String? a,
-      @JsonKey(name: "vote_average") String? voteAverage});
+      {@JsonKey(name: "backdrop_path") String? backDropPath,
+      @JsonKey(name: "vote_average") double? voteAverage});
 }
 
 /// @nodoc
@@ -93,18 +93,18 @@ class __$$_MovieContentCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? a = freezed,
+    Object? backDropPath = freezed,
     Object? voteAverage = freezed,
   }) {
     return _then(_$_MovieContent(
-      a: a == freezed
-          ? _value.a
-          : a // ignore: cast_nullable_to_non_nullable
+      backDropPath: backDropPath == freezed
+          ? _value.backDropPath
+          : backDropPath // ignore: cast_nullable_to_non_nullable
               as String?,
       voteAverage: voteAverage == freezed
           ? _value.voteAverage
           : voteAverage // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
     ));
   }
 }
@@ -113,7 +113,7 @@ class __$$_MovieContentCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MovieContent implements _MovieContent {
   const _$_MovieContent(
-      {@JsonKey(name: "backdrop_path") this.a,
+      {@JsonKey(name: "backdrop_path") this.backDropPath,
       @JsonKey(name: "vote_average") this.voteAverage});
 
   factory _$_MovieContent.fromJson(Map<String, dynamic> json) =>
@@ -121,15 +121,15 @@ class _$_MovieContent implements _MovieContent {
 
   @override
   @JsonKey(name: "backdrop_path")
-  final String? a;
+  final String? backDropPath;
 // ignore: invalid_annotation_target
   @override
   @JsonKey(name: "vote_average")
-  final String? voteAverage;
+  final double? voteAverage;
 
   @override
   String toString() {
-    return 'MovieContent(a: $a, voteAverage: $voteAverage)';
+    return 'MovieContent(backDropPath: $backDropPath, voteAverage: $voteAverage)';
   }
 
   @override
@@ -137,7 +137,8 @@ class _$_MovieContent implements _MovieContent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MovieContent &&
-            const DeepCollectionEquality().equals(other.a, a) &&
+            const DeepCollectionEquality()
+                .equals(other.backDropPath, backDropPath) &&
             const DeepCollectionEquality()
                 .equals(other.voteAverage, voteAverage));
   }
@@ -146,7 +147,7 @@ class _$_MovieContent implements _MovieContent {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(a),
+      const DeepCollectionEquality().hash(backDropPath),
       const DeepCollectionEquality().hash(voteAverage));
 
   @JsonKey(ignore: true)
@@ -162,8 +163,8 @@ class _$_MovieContent implements _MovieContent {
 
 abstract class _MovieContent implements MovieContent {
   const factory _MovieContent(
-          {@JsonKey(name: "backdrop_path") final String? a,
-          @JsonKey(name: "vote_average") final String? voteAverage}) =
+          {@JsonKey(name: "backdrop_path") final String? backDropPath,
+          @JsonKey(name: "vote_average") final double? voteAverage}) =
       _$_MovieContent;
 
   factory _MovieContent.fromJson(Map<String, dynamic> json) =
@@ -171,10 +172,10 @@ abstract class _MovieContent implements MovieContent {
 
   @override
   @JsonKey(name: "backdrop_path")
-  String? get a;
+  String? get backDropPath;
   @override // ignore: invalid_annotation_target
   @JsonKey(name: "vote_average")
-  String? get voteAverage;
+  double? get voteAverage;
   @override
   @JsonKey(ignore: true)
   _$$_MovieContentCopyWith<_$_MovieContent> get copyWith =>
